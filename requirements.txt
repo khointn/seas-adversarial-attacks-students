@@ -1,0 +1,10 @@
+# Install torch/torchvision first if needed, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+torch>=2.1.0
+torchvision>=0.16.0
+numpy>=1.23.0
+matplotlib>=3.7.0
+Pillow>=9.0.0
+scipy>=1.10.0
+jupyter>=1.0.0
+ipykernel>=6.25.0

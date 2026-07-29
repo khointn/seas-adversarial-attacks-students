@@ -3,6 +3,10 @@
 from __future__ import annotations
 
 from typing import Literal
+from tqdm import tqdm
+import os
+from pathlib import Path
+import random
 import numpy as np
 
 from tog_model import YOLOv3TOGModel
@@ -141,3 +145,27 @@ def tog_untargeted(
     for _ in range(num_iterations):
         # TODO: student fill here
     return adversarial_image
+
+
+def tog_universal(
+    victim: YOLOv3TOGModel,
+    image: np.ndarray,
+    num_iterations: int = 10,
+    epsilon: float = 8 / 255.0,
+    step_size: float = 2 / 255.0,
+    data_path: str = '',
+    n_train_samples: int = 100
+) -> np.ndarray:
+    # read data and select number training samples
+    fpaths_train = []
+    fpaths_train += [os.path.join(data_path, '%s' % file.name) for file in Path(data_path).iterdir()]
+    
+    # TODO: randomly shuffle and select n_train_samples data to train
+
+    for _ in range(num_iterations):
+        pbar = tqdm(fpaths_train) # for tracking the training progress
+        pbar.set_description('Epoch %d/%d' % (num_iterations + 1, num_iterations))
+
+        # TODO: Implement the main algorithm for TOG universal here. Can try with object vanishing first.
+        
+    return # TODO: return the trained noise
